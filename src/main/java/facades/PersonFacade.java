@@ -1,7 +1,5 @@
 package facades;
 
-import dtos.AddressDTO;
-import entities.Address;
 import entities.Person;
 
 import javax.persistence.EntityManager;

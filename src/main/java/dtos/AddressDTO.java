@@ -1,41 +1,43 @@
 package dtos;
 
+import entities.Address;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 public class AddressDTO implements Serializable {
     private final Integer id;
-    //private final CityInfoDTO cityInfo;
     private final String street;
-    private final String streetNumber;
+    private final Integer streetNumber;
     private final String floor;
+    private final Address idCityInfo;
 
-    public AddressDTO(Integer id, String street, String streetNumber, String floor) {
+    public AddressDTO(Integer id, String street, Integer streetNumber, String floor, Address idCityInfo) {
         this.id = id;
-        //this.cityInfo = cityInfo;
         this.street = street;
         this.streetNumber = streetNumber;
         this.floor = floor;
+        this.idCityInfo = idCityInfo;
     }
 
     public Integer getId() {
         return id;
     }
 
-    /*public CityInfoDTO getCityInfo() {
-        return cityInfo;
-    }*/
-
     public String getStreet() {
         return street;
     }
 
-    public String getStreetNumber() {
+    public Integer getStreetNumber() {
         return streetNumber;
     }
 
     public String getFloor() {
         return floor;
+    }
+
+    public Address getIdCityInfo() {
+        return idCityInfo;
     }
 
     @Override
@@ -44,24 +46,24 @@ public class AddressDTO implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         AddressDTO entity = (AddressDTO) o;
         return Objects.equals(this.id, entity.id) &&
-               // Objects.equals(this.cityInfo, entity.cityInfo) &&
                 Objects.equals(this.street, entity.street) &&
                 Objects.equals(this.streetNumber, entity.streetNumber) &&
-                Objects.equals(this.floor, entity.floor);
+                Objects.equals(this.floor, entity.floor) &&
+                Objects.equals(this.idCityInfo, entity.idCityInfo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id,  street, streetNumber, floor);
+        return Objects.hash(id, street, streetNumber, floor, idCityInfo);
     }
 
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" +
                 "id = " + id + ", " +
-                "cityInfo = " + ", " +
                 "street = " + street + ", " +
                 "streetNumber = " + streetNumber + ", " +
-                "floor = " + floor + ")";
+                "floor = " + floor + ", " +
+                "idCityInfo = " + idCityInfo + ")";
     }
 }
