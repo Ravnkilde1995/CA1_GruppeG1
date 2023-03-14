@@ -6,6 +6,9 @@
 package facades;
 
 import javax.persistence.EntityManagerFactory;
+
+import dtos.RenameMeDTO;
+import entities.RenameMe;
 import utils.EMF_Creator;
 
 /**
