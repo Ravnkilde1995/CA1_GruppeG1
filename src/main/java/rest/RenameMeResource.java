@@ -41,6 +41,8 @@ public class RenameMeResource {
     public Response postExample(String input){
         RenameMeDTO rmdto = GSON.fromJson(input, RenameMeDTO.class);
         System.out.println(rmdto);
+        System.out.println("hehe");
         return Response.ok().entity(rmdto).build();
+
     }
 }
