@@ -48,9 +48,9 @@ public class PersonFacade {
         return person;
     }
 
-    public Person addPerson(String firstName, String lastName, String email, int phoneNumber ) {
+    public Person addPerson(String firstName, String lastName, String email , int phoneNumber,  int idAddress) {
         EntityManager em = emf.createEntityManager();
-        Person person = new Person(firstName, lastName, email, phoneNumber);
+        Person person = new Person(firstName, lastName, email, phoneNumber, idAddress);
         em.getTransaction().begin();
         em.persist(person);
         em.getTransaction().commit();

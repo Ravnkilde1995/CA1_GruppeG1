@@ -11,9 +11,9 @@ public class PersonDTO implements Serializable {
     private String firstName;
     private String lastName;
     private Integer phoneNumber;
-    private AddressDTO idAddress;
+    private int idAddress;
 
-    public PersonDTO(Integer id, String email, String firstName, String lastName, Integer phoneNumber, AddressDTO idAddress) {
+    public PersonDTO(Integer id, String email, String firstName, String lastName, Integer phoneNumber, int idAddress) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
@@ -45,7 +45,7 @@ public class PersonDTO implements Serializable {
         return phoneNumber;
     }
 
-    public AddressDTO getIdAddress() {
+    public int getIdAddress() {
         return idAddress;
     }
 

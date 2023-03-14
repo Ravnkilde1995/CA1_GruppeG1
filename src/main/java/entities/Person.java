@@ -22,11 +22,22 @@ public class Person {
     @Column(name = "phoneNumber", nullable = false)
     private Integer phoneNumber;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @Column(name = "idAddress", nullable = false)
+    //@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idAddress", nullable = false)
-    private Address idAddress;
+    private int idAddress;
 
-    public Person(String email, String firstName, String lastName, Integer phoneNumber, Address idAddress) {
+    /*public Person(String email, String firstName, String lastName,  Address idAddress) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        //this.phoneNumber = phoneNumber;
+        this.idAddress = idAddress;
+    }*/
+
+    //Constructor without Adress
+
+    public Person(String email, String firstName, String lastName, int phoneNumber, int idAddress) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,26 +45,16 @@ public class Person {
         this.idAddress = idAddress;
     }
 
-    //Constructor without Adress
-
-    public Person(String email, String firstName, String lastName, Integer phoneNumber) {
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-    }
-
     public Person() {
 
     }
 
 
-
-    public Address getIdAddress() {
+    public int getIdAddress() {
         return idAddress;
     }
 
-    public void setIdAddress(Address idAddress) {
+    public void setIdAddress(int idAddress) {
         this.idAddress = idAddress;
     }
 

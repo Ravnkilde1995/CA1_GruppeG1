@@ -74,11 +74,11 @@ public class RenameMeResource {
     @Consumes({MediaType.APPLICATION_JSON})
     public Response createPerson(String content){
         PersonDTO pd = GSON.fromJson(content, PersonDTO.class);
-        Person p = personFacade.addPerson(pd.getFirstName(), pd.getLastName(), pd.getEmail(), pd.getPhoneNumber());
+        Person p = personFacade.addPerson(pd.getFirstName(), pd.getLastName(), pd.getEmail(), pd.getPhoneNumber(), pd.getIdAddress());
         return Response.ok(GSON.toJson(new PersonDTO(p))).build();
     }
 
-    @PUT
+    /*@PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
@@ -89,7 +89,7 @@ public class RenameMeResource {
 
 
         return Response.ok().entity(GSON.toJson(returned)).build();
-    }
+    }*/
 
 
 }
