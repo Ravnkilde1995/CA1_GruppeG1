@@ -45,11 +45,10 @@ public class RenameMeResource {
     @GET
     @Path("persons")
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Person> getPersons() {
-        List<Person> persons = new ArrayList<>();
-        persons = personFacade.getAllPersons();
+    public Response getPersons() {
+        List<Person> persons = personFacade.getAllPersons();
 
-        return persons;
+        return Response.status(200).entity(GSON.toJson(persons)).build();
     }
 
     @GET
@@ -78,4 +77,19 @@ public class RenameMeResource {
         Person p = personFacade.addPerson(pd.getFirstName(), pd.getLastName(), pd.getEmail(), pd.getPhoneNumber());
         return Response.ok(GSON.toJson(new PersonDTO(p))).build();
     }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{id}")
+    public Response updatePerson(@PathParam("id") Integer id, String content) {
+        Person pd = GSON.fromJson(content, Person.class);
+        pd.setId(id);
+        Person returned = personFacade.editPerson();
+
+
+        return Response.ok().entity(GSON.toJson(returned)).build();
+    }
+
+
 }

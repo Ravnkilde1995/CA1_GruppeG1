@@ -48,30 +48,6 @@ public class PersonFacade {
         return person;
     }
 
-    /**
-     lav en adresse som string og et post nummer som int i Person klassen.
-     Slet tabellerne i databasen, facade,dtos osv..
-
-     put er tjekket igennem med postman, og der er hul igennem.
-     - mangler bare formtag i frontend før det er sat ordentligt op..
-
-     lad os lige breake opgaven ud i bidder i morgen, da vi nu er en 4 mands gruppe bliver vi nok nød til at udele
-     arbejds opgaver.
-
-     * få styr på fetch & AJAX - Jorg er tilrådighed på zoom.
-     * få styr på databasen eventuelt med ny implimentering af overstående.
-     * mangler edit metode i personFacade
-     * mangler en del get metoder i  personFacade
-     *
-     *
-     *
-     *
-     * tilføje hobbies (Tjek om vi overholder normalisering i databasen)
-     * gøre os tanker om hvordan vi laver en search engine
-     * lave tests på de metoder vi laver - så vi kan følge CI pipeline strukturen.
-
-     **/
-
     public Person addPerson(String firstName, String lastName, String email, int phoneNumber ) {
         EntityManager em = emf.createEntityManager();
         Person person = new Person(firstName, lastName, email, phoneNumber);
@@ -83,10 +59,29 @@ public class PersonFacade {
         return person;
     }
 
-    /*
-    public PersonDTO editPerson(int id) {
-        EntityManager em = emf.createEntityManager();
-    }*/
+    public Person editPerson() {
+        EntityManager entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+
+        Person person = entityManager.find(Person.class, 3);
+        System.out.println("person id :: " + person.getId());
+        System.out.println("person firstname :: " + person.getFirstName());
+        System.out.println("person lastname :: " + person.getLastName());
+        System.out.println("person email :: " + person.getEmail());
+        System.out.println("person phoneNumber :: " + person.getPhoneNumber());
+        //System.out.println("person adress :: " + person.getIdAddress());
+
+        // The entity object is physically updated in the database when the transaction
+        // is committed
+        person.setFirstName("ole");
+        person.setLastName("lukøje");
+        person.setEmail("nat@nat.dk");
+        person.setPhoneNumber(29292929);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+
+        return person;
+    }
 
 
 }

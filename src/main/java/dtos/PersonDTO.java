@@ -49,6 +49,10 @@ public class PersonDTO implements Serializable {
         return idAddress;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,4 +81,5 @@ public class PersonDTO implements Serializable {
                 "phoneNumber = " + phoneNumber + ", " +
                 "idAddress = " + idAddress + ")";
     }
+
 }
