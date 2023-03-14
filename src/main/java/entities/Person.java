@@ -26,6 +26,29 @@ public class Person {
     @JoinColumn(name = "idAddress", nullable = false)
     private Address idAddress;
 
+    public Person(String email, String firstName, String lastName, Integer phoneNumber, Address idAddress) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.idAddress = idAddress;
+    }
+
+    //Constructor without Adress
+
+    public Person(String email, String firstName, String lastName, Integer phoneNumber) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Person() {
+
+    }
+
+
+
     public Address getIdAddress() {
         return idAddress;
     }

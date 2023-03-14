@@ -75,7 +75,7 @@ public class RenameMeResource {
     @Consumes({MediaType.APPLICATION_JSON})
     public Response createPerson(String content){
         PersonDTO pd = GSON.fromJson(content, PersonDTO.class);
-        Person p = personFacade.addPerson(pd.getFirstName(), pd.getLastName(), pd.getEmail());
+        Person p = personFacade.addPerson(pd.getFirstName(), pd.getLastName(), pd.getEmail(), pd.getPhoneNumber());
         return Response.ok(GSON.toJson(new PersonDTO(p))).build();
     }
 }

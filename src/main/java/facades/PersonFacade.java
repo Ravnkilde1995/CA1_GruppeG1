@@ -1,5 +1,6 @@
 package facades;
 
+import entities.Address;
 import entities.Person;
 
 import javax.persistence.EntityManager;
@@ -71,9 +72,9 @@ public class PersonFacade {
 
      **/
 
-    public Person addPerson(String firstName, String lastName, String email) {
+    public Person addPerson(String firstName, String lastName, String email, int phoneNumber ) {
         EntityManager em = emf.createEntityManager();
-        Person person = new Person(firstName, lastName, email);
+        Person person = new Person(firstName, lastName, email, phoneNumber);
         em.getTransaction().begin();
         em.persist(person);
         em.getTransaction().commit();

@@ -1,15 +1,17 @@
 package dtos;
 
+import entities.Person;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 public class PersonDTO implements Serializable {
-    private final Integer id;
-    private final String email;
-    private final String firstName;
-    private final String lastName;
-    private final Integer phoneNumber;
-    private final AddressDTO idAddress;
+    private  Integer id;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private Integer phoneNumber;
+    private AddressDTO idAddress;
 
     public PersonDTO(Integer id, String email, String firstName, String lastName, Integer phoneNumber, AddressDTO idAddress) {
         this.id = id;
@@ -18,6 +20,9 @@ public class PersonDTO implements Serializable {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.idAddress = idAddress;
+    }
+
+    public PersonDTO(Person p) {
     }
 
     public Integer getId() {
