@@ -78,18 +78,17 @@ public class RenameMeResource {
         return Response.ok(GSON.toJson(new PersonDTO(p))).build();
     }
 
-    /*@PUT
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{id}")
+    @Path("/{id}")
     public Response updatePerson(@PathParam("id") Integer id, String content) {
         Person pd = GSON.fromJson(content, Person.class);
         pd.setId(id);
-        Person returned = personFacade.editPerson();
-
+        Person returned = personFacade.editPerson(id);
 
         return Response.ok().entity(GSON.toJson(returned)).build();
-    }*/
+    }
 
 
 }

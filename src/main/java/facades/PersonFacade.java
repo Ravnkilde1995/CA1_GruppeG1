@@ -58,12 +58,13 @@ public class PersonFacade {
 
         return person;
     }
-
-    public Person editPerson() {
+    // tag id med fra resuresen
+    // tag parametre med til a sette de nye attributer.
+    public Person editPerson(Integer id) {
         EntityManager entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
 
-        Person person = entityManager.find(Person.class, 3);
+        Person person = entityManager.find(Person.class, id);
         System.out.println("person id :: " + person.getId());
         System.out.println("person firstname :: " + person.getFirstName());
         System.out.println("person lastname :: " + person.getLastName());
@@ -77,6 +78,7 @@ public class PersonFacade {
         person.setLastName("lukøje");
         person.setEmail("nat@nat.dk");
         person.setPhoneNumber(29292929);
+        person.setIdAddress(1);
         entityManager.getTransaction().commit();
         entityManager.close();
 
