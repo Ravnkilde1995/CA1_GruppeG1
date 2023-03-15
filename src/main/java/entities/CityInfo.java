@@ -9,6 +9,14 @@ public class CityInfo {
     @Column(name = "idCityInfo", nullable = false)
     private Integer id;
 
+    public CityInfo(int idCityInfo) {
+        this.id = idCityInfo;
+    }
+
+    public CityInfo() {
+
+    }
+
     public Integer getId() {
         return id;
     }

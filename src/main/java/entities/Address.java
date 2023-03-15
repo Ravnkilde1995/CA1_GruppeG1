@@ -23,6 +23,13 @@ public class Address {
     @JoinColumn(name = "idCityInfo", nullable = false)
     private CityInfo idCityInfo;
 
+    public Address(String street, int streetNumber, String floor, int idCityInfo) {
+        this.street = street;
+        this.streetNumber = streetNumber;
+        this.floor = floor;
+        this.idCityInfo = new CityInfo(idCityInfo);
+    }
+
     public CityInfo getIdCityInfo() {
         return idCityInfo;
     }
