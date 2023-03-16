@@ -1,14 +1,17 @@
 package entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Hobby")
-public class Hobby {
+public class Hobby implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idHobby", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "name", nullable = false, length = 45)
     private String name;
@@ -18,6 +21,17 @@ public class Hobby {
 
     @Column(name = "category", nullable = false, length = 45)
     private String category;
+
+    // Hobby constructor
+    public Hobby(String name, String description, String category) {
+        this.name = name;
+        this.description = description;
+        this.category = category;
+    }
+    public Hobby() {
+
+    }
+
 
     public String getCategory() {
         return category;
@@ -43,11 +57,11 @@ public class Hobby {
         this.name = name;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }
