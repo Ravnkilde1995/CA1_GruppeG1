@@ -44,8 +44,15 @@ public class HobbyFacade {
         return HobbyDTO.getDtos(hs);
     }
 
-    public HobbyDTO createHobby(HobbyDTO h) {
-        Hobby hobby = new Hobby(h.getName(), h.getDescription(), h.getCategory());
+    public HobbyDTO getById(long id) {
+        EntityManager em = emf.createEntityManager();
+        Hobby hobby = em.find(Hobby.class, id);
+        System.out.println("idIsNotNull2: " + id);
+        return new HobbyDTO(hobby);
+    }
+
+    public HobbyDTO createHobby(HobbyDTO hdto) {
+        Hobby hobby = new Hobby(hdto.getId(), hdto.getName(), hdto.getDescription(), hdto.getCategory());
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -57,11 +64,26 @@ public class HobbyFacade {
         return new HobbyDTO(hobby);
     }
 
-    public HobbyDTO getById(long id) {
+    // Update Hobby
+    public HobbyDTO updateHobby(long id,HobbyDTO hdto) {
         EntityManager em = emf.createEntityManager();
         Hobby hobby = em.find(Hobby.class, id);
+        System.out.println("updateHobby: " +hobby);
+        System.out.println("idIsNotNull: " + id);
+        hobby.setName(hdto.getName());
+        hobby.setDescription(hdto.getDescription());
+        hobby.setCategory(hdto.getCategory());
+
+        try {
+            em.getTransaction().begin();
+            em.merge(hobby);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
         return new HobbyDTO(hobby);
     }
+
 
     public long getHobbyCount() {
         EntityManager em = emf.createEntityManager();

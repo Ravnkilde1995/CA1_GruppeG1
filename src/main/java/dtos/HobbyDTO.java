@@ -14,12 +14,12 @@ public class HobbyDTO implements Serializable {
     private String description;
     private String category;
 
-    public HobbyDTO(long id, String name, String description, String category) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.category = category;
-    }
+//    public HobbyDTO(long id, String name, String description, String category) {
+//        this.id = id;
+//        this.name = name;
+//        this.description = description;
+//        this.category = category;
+//    }
 
     public HobbyDTO(String name, String description, String category) {
         this.name = name;
@@ -34,11 +34,11 @@ public class HobbyDTO implements Serializable {
     }
 
     public HobbyDTO(Hobby h) {
-        if(h.getId() != null)
-        this.id = h.getId();
-        this.name = h.getName();
-        this.description = h.getDescription();
-        this.category = h.getCategory();
+//        if(h.getId() != null)
+            this.id = h.getId();
+            this.name = h.getName();
+            this.description = h.getDescription();
+            this.category = h.getCategory();
     }
 
 
@@ -94,7 +94,6 @@ public class HobbyDTO implements Serializable {
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
                 "name = " + name + ", " +
                 "description = " + description + ", " +
                 "category = " + category + ")";

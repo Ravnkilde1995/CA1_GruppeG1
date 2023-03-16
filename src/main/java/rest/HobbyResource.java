@@ -47,16 +47,31 @@ public class HobbyResource {
     @Produces({MediaType.APPLICATION_JSON})
     public String getHobbyById(@PathParam("id") long id) {
         HobbyDTO hdto = FACADE.getById(id);
+        hdto.setId(id);
         return GSON.toJson(hdto);
     }
 
+    // CREATE HOBBY WITH POST
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    public Response postExample(String input) {
+    public Response postHobby(String input) {
+        HobbyDTO hdto = GSON.fromJson(input, HobbyDTO.class);
+        hdto = FACADE.createHobby(hdto);
+        return Response.ok().entity(hdto).build();
+    }
+
+    @PUT
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("{id}")
+    public Response putHobby(@PathParam("id") long id, String input) throws Exception {
         HobbyDTO hdto = GSON.fromJson(input, HobbyDTO.class);
         System.out.println(hdto);
-        hdto = FACADE.createHobby(hdto);
+
+        System.out.println("Get the id yes: " + hdto.getId());
+        hdto = FACADE.updateHobby(id, hdto);
+        hdto.setId(id);
         return Response.ok().entity(hdto).build();
     }
 

@@ -23,15 +23,20 @@ public class Hobby implements Serializable {
     private String category;
 
     // Hobby constructor
+    public Hobby(long id, String name, String description, String category) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.category = category;
+    }
+    // Hobby constructor
     public Hobby(String name, String description, String category) {
         this.name = name;
         this.description = description;
         this.category = category;
     }
     public Hobby() {
-
     }
-
 
     public String getCategory() {
         return category;

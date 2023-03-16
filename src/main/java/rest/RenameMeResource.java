@@ -86,9 +86,7 @@ public class RenameMeResource {
         Person pd = GSON.fromJson(content, Person.class);
         pd.setId(id);
         Person returned = personFacade.editPerson(id);
-
         return Response.ok().entity(GSON.toJson(returned)).build();
     }
-
 
 }
