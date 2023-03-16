@@ -19,10 +19,8 @@ import java.util.List;
 public class RenameMeResource {
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
-
     private static final FacadeExample FACADE =  FacadeExample.getFacadeExample(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-
     private static final PersonFacade personFacade =  PersonFacade.getPersonFacade(EMF);
 
     @GET
@@ -69,6 +67,7 @@ public class RenameMeResource {
         return Response.ok().entity(rmdto).build();
     }*/
 
+    /*
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
@@ -77,6 +76,8 @@ public class RenameMeResource {
         Person p = personFacade.addPerson(pd.getFirstName(), pd.getLastName(), pd.getEmail(), pd.getPhoneNumber(), pd.getIdAddress());
         return Response.ok(GSON.toJson(new PersonDTO(p))).build();
     }
+
+
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
@@ -90,5 +91,5 @@ public class RenameMeResource {
         return Response.ok().entity(GSON.toJson(returned)).build();
     }
 
-
+     */
 }

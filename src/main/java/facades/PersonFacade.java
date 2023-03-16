@@ -30,7 +30,6 @@ public class PersonFacade {
      */
 
 
-
     public List<Person> getAllPersons() {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
@@ -48,9 +47,9 @@ public class PersonFacade {
         return person;
     }
 
-    public Person addPerson(String firstName, String lastName, String email , int phoneNumber,  int idAddress) {
+    public Person addPerson(String firstName, String lastName, String email , int phoneNumber,  Address address) {
         EntityManager em = emf.createEntityManager();
-        Person person = new Person(firstName, lastName, email, phoneNumber, idAddress);
+        Person person = new Person(firstName, lastName, email, phoneNumber, address);
         em.getTransaction().begin();
         em.persist(person);
         em.getTransaction().commit();
@@ -58,6 +57,9 @@ public class PersonFacade {
 
         return person;
     }
+
+
+    /*
     // tag id med fra resuresen
     // tag parametre med til a sette de nye attributer.
     public Person editPerson(Integer id) {
@@ -85,5 +87,8 @@ public class PersonFacade {
         return person;
     }
 
+     */
 
 }
+
+

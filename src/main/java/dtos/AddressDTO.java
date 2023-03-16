@@ -1,23 +1,25 @@
 package dtos;
 
-import entities.Address;
-
 import java.io.Serializable;
 import java.util.Objects;
 
 public class AddressDTO implements Serializable {
-    private final Integer id;
-    private final String street;
-    private final Integer streetNumber;
-    private final String floor;
-    private final Address idCityInfo;
+    private  Integer id;
+    private  String street;
+    private  Integer streetNumber;
+    private  String floor;
+    private  String city;
+    private  String zipCode;
+    private  int idCityInfo;
 
-    public AddressDTO(Integer id, String street, Integer streetNumber, String floor, Address idCityInfo) {
+
+    public AddressDTO(Integer id, String street, Integer streetNumber, String floor, String city, String zipCode) {
         this.id = id;
         this.street = street;
         this.streetNumber = streetNumber;
         this.floor = floor;
-        this.idCityInfo = idCityInfo;
+        this.city = city;
+        this.zipCode = zipCode;
     }
 
     public Integer getId() {
@@ -36,8 +38,12 @@ public class AddressDTO implements Serializable {
         return floor;
     }
 
-    public Address getIdCityInfo() {
-        return idCityInfo;
+    public String getCity() {
+        return city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
     }
 
     @Override

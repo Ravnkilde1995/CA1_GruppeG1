@@ -14,6 +14,7 @@
         <class>entities.HobbyPerson</class>
         <class>entities.HobbyPersonId</class>
         <class>entities.HobbyPerson</class>
+        <class>entities.CityInfo</class>
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <!--    <class>entities.RenameMe</class>-->
         <exclude-unlisted-classes>false</exclude-unlisted-classes>

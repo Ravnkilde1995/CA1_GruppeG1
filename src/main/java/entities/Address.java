@@ -19,15 +19,16 @@ public class Address {
     @Column(name = "floor", nullable = false, length = 45)
     private String floor;
 
+    @Column(name = "idCityInfo", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idCityInfo", nullable = false)
-    private CityInfo idCityInfo;
+    CityInfo idCityInfo;
 
-    public Address(String street, int streetNumber, String floor, int idCityInfo) {
+    public Address(String street, int streetNumber, String floor, CityInfo idCityInfo) {
         this.street = street;
         this.streetNumber = streetNumber;
         this.floor = floor;
-        this.idCityInfo = new CityInfo(idCityInfo);
+        this.idCityInfo = idCityInfo;
     }
 
     public CityInfo getIdCityInfo() {
