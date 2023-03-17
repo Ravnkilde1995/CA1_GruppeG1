@@ -1,20 +1,23 @@
 package dtos;
 
+import entities.Address;
 import entities.Person;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class PersonDTO implements Serializable {
-    private  Integer id;
+    private Long idPerson;
     private String email;
     private String firstName;
     private String lastName;
     private Integer phoneNumber;
-    private int idAddress;
+    private Address idAddress;
 
-    public PersonDTO(Integer id, String email, String firstName, String lastName, Integer phoneNumber, int idAddress) {
-        this.id = id;
+    public PersonDTO(Long idPerson, String email, String firstName, String lastName, Integer phoneNumber, Address idAddress) {
+        this.idPerson = idPerson;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,8 +28,14 @@ public class PersonDTO implements Serializable {
     public PersonDTO(Person p) {
     }
 
-    public Integer getId() {
-        return id;
+    public static List<PersonDTO> getDtos(List<Person> persons) {
+        List<PersonDTO> personDTOs = new ArrayList<>();
+        persons.forEach((p) -> personDTOs.add(new PersonDTO(p)));
+        return personDTOs;
+    }
+
+    public Long getId() {
+        return idPerson;
     }
 
     public String getEmail() {
@@ -45,12 +54,12 @@ public class PersonDTO implements Serializable {
         return phoneNumber;
     }
 
-    public int getIdAddress() {
+    public Address getIdAddress() {
         return idAddress;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Address id) {
+        this.idPerson = idPerson;
     }
 
     @Override
@@ -58,7 +67,7 @@ public class PersonDTO implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PersonDTO entity = (PersonDTO) o;
-        return Objects.equals(this.id, entity.id) &&
+        return Objects.equals(this.idPerson, entity.idPerson) &&
                 Objects.equals(this.email, entity.email) &&
                 Objects.equals(this.firstName, entity.firstName) &&
                 Objects.equals(this.lastName, entity.lastName) &&
@@ -68,13 +77,13 @@ public class PersonDTO implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, firstName, lastName, phoneNumber, idAddress);
+        return Objects.hash(idPerson, email, firstName, lastName, phoneNumber, idAddress);
     }
 
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
+                "id = " + idPerson + ", " +
                 "email = " + email + ", " +
                 "firstName = " + firstName + ", " +
                 "lastName = " + lastName + ", " +
