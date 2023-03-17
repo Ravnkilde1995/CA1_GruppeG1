@@ -1,5 +1,8 @@
 package entities;
 
+import dtos.AddressDTO;
+import org.eclipse.persistence.jpa.config.Cascade;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,12 +22,30 @@ public class Address {
     @Column(name = "floor", nullable = false, length = 45)
     private String floor;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idCityInfo", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idCityInfo", referencedColumnName = "idCityInfo")
     private Cityinfo idCityInfo;
+
+    public Address(String street, Integer streetNumber, String floor) {
+        this.street = street;
+        this.streetNumber = streetNumber;
+        this.floor = floor;
+    }
 
     public Cityinfo getIdCityInfo() {
         return idCityInfo;
+    }
+
+    public Address (AddressDTO addressDTO) {
+        this.id = addressDTO.getId();
+        this.street = addressDTO.getStreet();
+        this.streetNumber = addressDTO.getStreetNumber();
+        this.floor = addressDTO.getFloor();
+        this.idCityInfo = new Cityinfo(addressDTO.getIdCityInfo());
+    }
+
+    public Address() {
+
     }
 
     public void setIdCityInfo(Cityinfo idCityInfo) {

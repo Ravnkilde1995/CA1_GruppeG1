@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dtos.AddressDTO;
 import dtos.PersonDTO;
+import entities.Address;
+import entities.Person;
 import facades.PersonFacade;
 import utils.EMF_Creator;
 import facades.FacadeExample;
@@ -69,15 +71,9 @@ public class RenameMeResource {
         System.out.println(rmdto);
         return Response.ok().entity(rmdto).build();
     }
+    /*
 
-    @POST
-    @Produces({MediaType.APPLICATION_JSON})
-    @Consumes({MediaType.APPLICATION_JSON})
-    public Response createPerson(String content){
-        PersonDTO pd = GSON.fromJson(content, PersonDTO.class);
-        Person p = personFacade.addPerson(pd.getFirstName(), pd.getLastName(), pd.getEmail(), pd.getPhoneNumber(), pd.getIdAddress());
-        return Response.ok(GSON.toJson(new PersonDTO(p))).build();
-    }
+
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
@@ -93,6 +89,7 @@ public class RenameMeResource {
 
      */
 
+    /*
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
@@ -100,5 +97,17 @@ public class RenameMeResource {
         PersonDTO pd = GSON.fromJson(content, PersonDTO.class);
         PersonDTO p = personFacade.create(pd);
         return Response.ok(GSON.toJson(p)).build();
+    }
+
+     */
+
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response createPerson(String content){
+        PersonDTO pd = GSON.fromJson(content, PersonDTO.class);
+        Address address = new Address(pd.getAddress().getStreet(), pd.getAddress().getStreetNumber(), pd.getAddress().getFloor());
+        Person p = personFacade.addPerson(pd.getFirstName(), pd.getLastName(), pd.getEmail(), pd.getPhoneNumber(), address);
+        return Response.ok(GSON.toJson(new PersonDTO(p))).build();
     }
 }

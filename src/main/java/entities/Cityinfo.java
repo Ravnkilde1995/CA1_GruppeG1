@@ -1,5 +1,7 @@
 package entities;
 
+import dtos.CityinfoDto;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -20,6 +22,16 @@ public class Cityinfo {
 
     @OneToMany(mappedBy = "idCityInfo")
     private Set<Address> addresses = new LinkedHashSet<>();
+
+    public Cityinfo(CityinfoDto idCityInfo) {
+        this.id = idCityInfo.getId();
+        this.city = idCityInfo.getCity();
+        this.zipCode = idCityInfo.getZipCode();
+    }
+
+    public Cityinfo() {
+
+    }
 
     public Set<Address> getAddresses() {
         return addresses;

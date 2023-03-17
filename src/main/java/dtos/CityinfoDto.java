@@ -7,10 +7,10 @@ import java.util.Objects;
 import java.util.Set;
 
 public class CityinfoDto implements Serializable {
-    private final Integer id;
-    private final String city;
-    private final Integer zipCode;
-    private final Set<AddressDTO> addresses;
+    private  Integer id;
+    private  String city;
+    private  Integer zipCode;
+    private  Set<AddressDTO> addresses;
 
     public CityinfoDto(Integer id, String city, Integer zipCode, Set<AddressDTO> addresses) {
         this.id = id;
@@ -24,6 +24,11 @@ public class CityinfoDto implements Serializable {
         this.city = idCityInfo.getCity();
         this.zipCode = idCityInfo.getZipCode();
         this.addresses = null;
+    }
+
+    public CityinfoDto(String city, int zipCode) {
+        this.city = city;
+        this.zipCode = zipCode;
     }
 
     public Integer getId() {

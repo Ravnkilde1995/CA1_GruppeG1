@@ -1,5 +1,7 @@
 package entities;
 
+import dtos.PersonDTO;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -26,9 +28,9 @@ public class Person {
     @Column(name = "phoneNumber", nullable = false)
     private Integer phoneNumber;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idAddress", nullable = false)
-    private Address idAddress;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address", referencedColumnName = "idAddress")
+    private Address address;
 
     @ManyToMany
     @JoinTable(name = "hobbyperson",
@@ -36,16 +38,34 @@ public class Person {
             inverseJoinColumns = @JoinColumn(name = "idHobby"))
     private Set<Hobby> hobbies = new LinkedHashSet<>();
 
-    public Person(String email, String firstName, String lastName, Integer phoneNumber, Address idAddress) {
+    public Person(String email, String firstName, String lastName, Integer phoneNumber, Address address) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.idAddress = idAddress;
+        this.address = address;
     }
 
     public Person() {
 
+    }
+
+    public Person (PersonDTO personDTO) {
+        this.id = personDTO.getId();
+        this.email = personDTO.getEmail();
+        this.firstName = personDTO.getFirstName();
+        this.lastName = personDTO.getLastName();
+        this.phoneNumber = personDTO.getPhoneNumber();
+        this.address = new Address(personDTO.getAddress());
+    }
+
+    public Person(String firstname, String lastname, String email, int phoneNumber, int addressID) {
+        this.firstName = firstname;
+        this.lastName = lastname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = new Address();
+        this.address.setId(addressID);
     }
 
     public Set<Hobby> getHobbies() {
@@ -56,12 +76,12 @@ public class Person {
         this.hobbies = hobbies;
     }
 
-    public Address getIdAddress() {
-        return idAddress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setIdAddress(Address idAddress) {
-        this.idAddress = idAddress;
+    public void setIdAddress(Address address) {
+        this.address = address;
     }
 
     public Integer getPhoneNumber() {

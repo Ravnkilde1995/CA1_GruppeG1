@@ -28,6 +28,12 @@ public class AddressDTO implements Serializable {
         this.idCityInfo = new CityinfoDto(address.getIdCityInfo());
     }
 
+    public AddressDTO(String street, int streetNumber, String floor) {
+        this.street = street;
+        this.streetNumber = streetNumber;
+        this.floor = floor;
+    }
+
     public Integer getId() {
         return id;
     }

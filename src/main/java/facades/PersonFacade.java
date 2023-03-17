@@ -46,9 +46,9 @@ public class PersonFacade {
         return person;
     }
 
-    /*
 
-    public Person addPerson(String firstName, String lastName, String email , int phoneNumber,  int idAddress) {
+
+    public Person addPerson(String firstName, String lastName, String email , int phoneNumber,  Address idAddress) {
         EntityManager em = emf.createEntityManager();
         Person person = new Person(firstName, lastName, email, phoneNumber, idAddress);
         em.getTransaction().begin();
@@ -58,6 +58,9 @@ public class PersonFacade {
 
         return person;
     }
+
+    /*
+
     // tag id med fra resuresen
     // tag parametre med til a sette de nye attributer.
     public Person editPerson(Integer id) {
@@ -86,6 +89,9 @@ public class PersonFacade {
     }
 
      */
+
+
+
 
 
     public PersonDTO create(PersonDTO personDTO) {
@@ -117,6 +123,5 @@ public class PersonFacade {
         em.close();
 
         return new PersonDTO(person);
-
     }
 }
