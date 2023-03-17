@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Todo Remove or change relevant parts before ACTUAL use
-@Path("person")
+@Path("xxx")
 public class RenameMeResource {
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
