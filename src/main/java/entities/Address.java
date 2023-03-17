@@ -10,19 +10,26 @@ public class Address {
     @Column(name = "idAddress", nullable = false)
     private Integer id;
 
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idAddress", nullable = false)
-    private CityInfo cityInfo;
-
     @Column(name = "street", nullable = false, length = 45)
     private String street;
 
-    @Column(name = "streetNumber", nullable = false, length = 45)
-    private String streetNumber;
+    @Column(name = "streetNumber", nullable = false)
+    private Integer streetNumber;
 
     @Column(name = "floor", nullable = false, length = 45)
     private String floor;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idCityInfo", nullable = false)
+    private CityInfo idCityInfo;
+
+    public CityInfo getIdCityInfo() {
+        return idCityInfo;
+    }
+
+    public void setIdCityInfo(CityInfo idCityInfo) {
+        this.idCityInfo = idCityInfo;
+    }
 
     public String getFloor() {
         return floor;
@@ -32,11 +39,11 @@ public class Address {
         this.floor = floor;
     }
 
-    public String getStreetNumber() {
+    public Integer getStreetNumber() {
         return streetNumber;
     }
 
-    public void setStreetNumber(String streetNumber) {
+    public void setStreetNumber(Integer streetNumber) {
         this.streetNumber = streetNumber;
     }
 
@@ -46,14 +53,6 @@ public class Address {
 
     public void setStreet(String street) {
         this.street = street;
-    }
-
-    public CityInfo getCityInfo() {
-        return cityInfo;
-    }
-
-    public void setCityInfo(CityInfo cityInfo) {
-        this.cityInfo = cityInfo;
     }
 
     public Integer getId() {

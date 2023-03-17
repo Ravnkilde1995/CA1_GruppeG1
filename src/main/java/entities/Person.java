@@ -10,11 +10,6 @@ public class Person {
     @Column(name = "idPerson", nullable = false)
     private Integer id;
 
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idPerson", nullable = false)
-    private Address address;
-
     @Column(name = "email", nullable = false, length = 45)
     private String email;
 
@@ -23,6 +18,53 @@ public class Person {
 
     @Column(name = "lastName", nullable = false, length = 45)
     private String lastName;
+
+    @Column(name = "phoneNumber", nullable = false)
+    private Integer phoneNumber;
+
+    @Column(name = "idAddress", nullable = false)
+    //@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idAddress", nullable = false)
+    private int idAddress;
+
+    /*public Person(String email, String firstName, String lastName,  Address idAddress) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        //this.phoneNumber = phoneNumber;
+        this.idAddress = idAddress;
+    }*/
+
+    //Constructor without Adress
+
+    public Person(String email, String firstName, String lastName, int phoneNumber, int idAddress) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.idAddress = idAddress;
+    }
+
+    public Person() {
+
+    }
+
+
+    public int getIdAddress() {
+        return idAddress;
+    }
+
+    public void setIdAddress(int idAddress) {
+        this.idAddress = idAddress;
+    }
+
+    public Integer getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Integer phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public String getLastName() {
         return lastName;
@@ -46,14 +88,6 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public Integer getId() {
