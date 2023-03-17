@@ -31,7 +31,7 @@ public class CityInfoResource {
     }
 
     @GET
-    @Path("cityinfo/{id}")
+    @Path("{id}")
     @Produces({MediaType.APPLICATION_JSON})
     public CityInfo getCityInfoById(@PathParam("id") int id) {
         CityInfo cityInfo = cityInfoFacade.getCityInfoById(id);
@@ -39,40 +39,4 @@ public class CityInfoResource {
         return cityInfo;
     }
 
-    @GET
-    @Path("cityinfo/{city}")
-    @Produces({MediaType.APPLICATION_JSON})
-    public CityInfo getCityInfoByCity(@PathParam("city") String city) {
-        CityInfo cityInfo = cityInfoFacade.getCityInfoByCity(city);
-        System.out.println("CityInfo by City is: "+cityInfo);
-        return cityInfo;
-    }
-
-
-
-    @POST
-    @Path("cityinfo")
-    @Produces({MediaType.APPLICATION_JSON})
-    @Consumes({MediaType.APPLICATION_JSON})
-    public CityInfo addCityInfo(int id, String city, int zipCode) {
-        CityInfo newCityInfo = cityInfoFacade.addCityInfo(id, city, zipCode);
-        System.out.println("New CityInfo is: "+newCityInfo);
-        return newCityInfo;
-    }
-
-
-
-    @PUT
-    @Path("cityinfo/{id}")
-    @Produces({MediaType.APPLICATION_JSON})
-    @Consumes({MediaType.APPLICATION_JSON})
-    public Response editCityInfo(@PathParam("id") int id, String city, int zipCode) {
-        CityInfo cityInfo = GSON.fromJson(city, CityInfo.class);
-        cityInfo.setId(id);
-        cityInfo.setCity(city);
-        cityInfo.setZipCode(zipCode);
-        CityInfo returned = cityInfoFacade.editCityInfo(id, city, zipCode);
-        System.out.println("Edited CityInfo is: "+returned);
-        return Response.ok().entity(GSON.toJson(returned)).build();
-    }
 }

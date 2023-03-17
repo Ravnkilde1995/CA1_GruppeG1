@@ -39,42 +39,4 @@ public class CityInfoFacade {
         return cityInfo;
     }
 
-    public CityInfo getCityInfoByCity(String city) {
-        EntityManager em = emf.createEntityManager();
-        CityInfo cityInfo = em.find(CityInfo.class, city);
-        return cityInfo;
-    }
-
-    public CityInfo addCityInfo(int id, String city, int zipCode) {
-        EntityManager em = emf.createEntityManager();
-        CityInfo cityInfo = new CityInfo(id, city, zipCode);
-        em.getTransaction().begin();
-        em.persist(cityInfo);
-        em.getTransaction().commit();
-        em.close();
-
-        return cityInfo;
-    }
-
-    public CityInfo deleteCityInfo(int id) {
-        EntityManager em = emf.createEntityManager();
-        CityInfo cityInfo = em.find(CityInfo.class, id);
-        em.getTransaction().begin();
-        em.remove(cityInfo);
-        em.getTransaction().commit();
-        em.close();
-        return cityInfo;
-    }
-
-    public CityInfo editCityInfo(int id, String city, int zipCode) {
-        EntityManager em = emf.createEntityManager();
-        CityInfo cityInfo = em.find(CityInfo.class, id);
-        cityInfo.setCity(city);
-        em.getTransaction().begin();
-        em.persist(cityInfo);
-        em.getTransaction().commit();
-        em.close();
-        return cityInfo;
-    }
-
 }
