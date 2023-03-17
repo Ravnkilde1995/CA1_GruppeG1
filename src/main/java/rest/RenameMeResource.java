@@ -20,10 +20,8 @@ import java.util.List;
 public class RenameMeResource {
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
-
     private static final FacadeExample FACADE =  FacadeExample.getFacadeExample(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-
     private static final PersonFacade personFacade =  PersonFacade.getPersonFacade(EMF);
 
     @GET
@@ -42,7 +40,7 @@ public class RenameMeResource {
         return "{\"count\":"+count+"}";  //Done manually so no need for a DTO
 
     }
-/*
+
     @GET
     @Path("persons")
     @Produces({MediaType.APPLICATION_JSON})
@@ -52,6 +50,7 @@ public class RenameMeResource {
         return Response.status(200).entity(GSON.toJson(persons)).build();
     }
 
+    /*
     @GET
     @Path("person/{id}")
     @Produces({MediaType.APPLICATION_JSON})
