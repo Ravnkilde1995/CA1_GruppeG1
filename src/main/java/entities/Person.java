@@ -1,9 +1,13 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "Person")
+@Table(name = "person", indexes = {
+        @Index(name = "fk_Person_Address1_idx", columnList = "idAddress")
+})
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,22 +26,17 @@ public class Person {
     @Column(name = "phoneNumber", nullable = false)
     private Integer phoneNumber;
 
-    @Column(name = "idAddress", nullable = false)
-    //@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idAddress", nullable = false)
-    private int idAddress;
+    private Address idAddress;
 
-    /*public Person(String email, String firstName, String lastName,  Address idAddress) {
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        //this.phoneNumber = phoneNumber;
-        this.idAddress = idAddress;
-    }*/
+    @ManyToMany
+    @JoinTable(name = "hobbyperson",
+            joinColumns = @JoinColumn(name = "idPerson"),
+            inverseJoinColumns = @JoinColumn(name = "idHobby"))
+    private Set<Hobby> hobbies = new LinkedHashSet<>();
 
-    //Constructor without Adress
-
-    public Person(String email, String firstName, String lastName, int phoneNumber, int idAddress) {
+    public Person(String email, String firstName, String lastName, Integer phoneNumber, Address idAddress) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,12 +48,19 @@ public class Person {
 
     }
 
+    public Set<Hobby> getHobbies() {
+        return hobbies;
+    }
 
-    public int getIdAddress() {
+    public void setHobbies(Set<Hobby> hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    public Address getIdAddress() {
         return idAddress;
     }
 
-    public void setIdAddress(int idAddress) {
+    public void setIdAddress(Address idAddress) {
         this.idAddress = idAddress;
     }
 

@@ -11,19 +11,21 @@ public class PersonDTO implements Serializable {
     private String firstName;
     private String lastName;
     private Integer phoneNumber;
-    private int idAddress;
+    private AddressDTO address;
 
-    public PersonDTO(Integer id, String email, String firstName, String lastName, Integer phoneNumber, int idAddress) {
+    public PersonDTO(Integer id, String email, String firstName, String lastName, Integer phoneNumber, AddressDTO address) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.idAddress = idAddress;
+        this.address = address;
     }
 
     public PersonDTO(Person p) {
+
     }
+
 
     public Integer getId() {
         return id;
@@ -45,9 +47,14 @@ public class PersonDTO implements Serializable {
         return phoneNumber;
     }
 
-    public int getIdAddress() {
-        return idAddress;
+    public AddressDTO getAddress() {
+        return address;
     }
+
+    public void setAddress(AddressDTO address) {
+        this.address = address;
+    }
+
 
     public void setId(Integer id) {
         this.id = id;
@@ -62,13 +69,12 @@ public class PersonDTO implements Serializable {
                 Objects.equals(this.email, entity.email) &&
                 Objects.equals(this.firstName, entity.firstName) &&
                 Objects.equals(this.lastName, entity.lastName) &&
-                Objects.equals(this.phoneNumber, entity.phoneNumber) &&
-                Objects.equals(this.idAddress, entity.idAddress);
+                Objects.equals(this.phoneNumber, entity.phoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, firstName, lastName, phoneNumber, idAddress);
+        return Objects.hash(id, email, firstName, lastName, phoneNumber);
     }
 
     @Override
@@ -78,8 +84,7 @@ public class PersonDTO implements Serializable {
                 "email = " + email + ", " +
                 "firstName = " + firstName + ", " +
                 "lastName = " + lastName + ", " +
-                "phoneNumber = " + phoneNumber + ", " +
-                "idAddress = " + idAddress + ")";
+                "phoneNumber = " + phoneNumber + ", " + ")";
     }
 
 }

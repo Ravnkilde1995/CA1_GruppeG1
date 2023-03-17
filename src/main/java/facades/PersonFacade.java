@@ -1,6 +1,10 @@
 package facades;
 
+import dtos.AddressDTO;
+import dtos.CityinfoDto;
+import dtos.PersonDTO;
 import entities.Address;
+import entities.Cityinfo;
 import entities.Person;
 
 import javax.persistence.EntityManager;
@@ -25,12 +29,6 @@ public class PersonFacade {
         return emf.createEntityManager();
     }
 
-    /**
-     * Rename Class to a relevant name Add add relevant facade methods
-     */
-
-
-
     public List<Person> getAllPersons() {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
@@ -47,6 +45,8 @@ public class PersonFacade {
 
         return person;
     }
+
+    /*
 
     public Person addPerson(String firstName, String lastName, String email , int phoneNumber,  int idAddress) {
         EntityManager em = emf.createEntityManager();
@@ -85,5 +85,38 @@ public class PersonFacade {
         return person;
     }
 
+     */
 
+
+    public PersonDTO create(PersonDTO personDTO) {
+
+        AddressDTO addressDTO = personDTO.getAddress();
+        CityinfoDto cityinfoDto = addressDTO.getIdCityInfo();
+        Cityinfo cityinfo = new Cityinfo();
+        Address address = new Address();
+
+        Person person = new Person();
+        person.setEmail(personDTO.getEmail());
+        person.setPhoneNumber(personDTO.getPhoneNumber());
+        person.setFirstName(personDTO.getFirstName());
+        person.setLastName(personDTO.getLastName());
+
+        address.setStreet(addressDTO.getStreet());
+        address.setStreetNumber(addressDTO.getStreetNumber());
+        address.setFloor(addressDTO.getFloor());
+
+        cityinfo.setCity(cityinfoDto.getCity());
+        cityinfo.setZipCode(cityinfoDto.getZipCode());
+
+        person.setIdAddress(address);
+
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(person);
+        em.getTransaction().commit();
+        em.close();
+
+        return new PersonDTO(person);
+
+    }
 }

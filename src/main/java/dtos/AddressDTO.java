@@ -6,18 +6,26 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class AddressDTO implements Serializable {
-    private final Integer id;
-    private final String street;
-    private final Integer streetNumber;
-    private final String floor;
-    private final Address idCityInfo;
+    private  Integer id;
+    private  String street;
+    private  Integer streetNumber;
+    private  String floor;
+    private  CityinfoDto idCityInfo;
 
-    public AddressDTO(Integer id, String street, Integer streetNumber, String floor, Address idCityInfo) {
+    public AddressDTO(Integer id, String street, Integer streetNumber, String floor, CityinfoDto idCityInfo) {
         this.id = id;
         this.street = street;
         this.streetNumber = streetNumber;
         this.floor = floor;
         this.idCityInfo = idCityInfo;
+    }
+
+    public AddressDTO(Address address) {
+        this.id = address.getId();
+        this.street = address.getStreet();
+        this.streetNumber = address.getStreetNumber();
+        this.floor = address.getFloor();
+        this.idCityInfo = new CityinfoDto(address.getIdCityInfo());
     }
 
     public Integer getId() {
@@ -36,8 +44,25 @@ public class AddressDTO implements Serializable {
         return floor;
     }
 
-    public Address getIdCityInfo() {
+
+    public CityinfoDto getIdCityInfo() {
         return idCityInfo;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setStreetNumber(Integer streetNumber) {
+        this.streetNumber = streetNumber;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
+    public void setIdCityInfo(CityinfoDto idCityInfo) {
+        this.idCityInfo = idCityInfo;
     }
 
     @Override

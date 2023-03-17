@@ -4,16 +4,9 @@
     <!-- DO NOT RENAME THE PERSISTENCE UNIT -->
     <persistence-unit name="pu" transaction-type="RESOURCE_LOCAL">
         <class>entities.Address</class>
-        <class>entities.EventDecider</class>
-        <class>entities.Person</class>
-        <class>entities.Phone</class>
-        <class>entities.Address</class>
         <class>entities.Hobby</class>
         <class>entities.Person</class>
-        <class>entities.HobbyPersonId</class>
-        <class>entities.HobbyPerson</class>
-        <class>entities.HobbyPersonId</class>
-        <class>entities.HobbyPerson</class>
+        <class>entities.Cityinfo</class>
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <!--    <class>entities.RenameMe</class>-->
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
@@ -32,9 +25,9 @@
             <property name="eclipselink.logging.parameters" value="true"/>
             
             <!-- In PRODUCTION the values below, will be overriden by utils.EMF_Creator -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://ravn-kilde.com:3306/CA1?serverTimezone=UTC"/>
-            <property name="javax.persistence.jdbc.user" value="dev"/>
-            <property name="javax.persistence.jdbc.password" value="dat2023!"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/CA1?serverTimezone=UTC"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="pllghp1d"/>
             
         </properties>
     </persistence-unit>

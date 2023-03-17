@@ -21,13 +21,13 @@ public class Address {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idCityInfo", nullable = false)
-    private CityInfo idCityInfo;
+    private Cityinfo idCityInfo;
 
-    public CityInfo getIdCityInfo() {
+    public Cityinfo getIdCityInfo() {
         return idCityInfo;
     }
 
-    public void setIdCityInfo(CityInfo idCityInfo) {
+    public void setIdCityInfo(Cityinfo idCityInfo) {
         this.idCityInfo = idCityInfo;
     }
 
