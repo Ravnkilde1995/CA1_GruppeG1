@@ -35,8 +35,7 @@ public class CityInfoResource {
     @Produces({MediaType.APPLICATION_JSON})
     public CityInfo getCityInfoById(@PathParam("id") int id) {
         CityInfo cityInfo = cityInfoFacade.getCityInfoById(id);
-        System.out.println("CityInfo by ID is: "+cityInfo);
+        System.out.println("CityInfo by ID is: " + cityInfo);
         return cityInfo;
     }
-
 }

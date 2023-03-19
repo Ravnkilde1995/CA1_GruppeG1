@@ -38,5 +38,4 @@ public class CityInfoFacade {
         CityInfo cityInfo = em.find(CityInfo.class, id);
         return cityInfo;
     }
-
 }

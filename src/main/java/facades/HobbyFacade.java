@@ -18,11 +18,6 @@ public class HobbyFacade {
     // Private Constructor to ensure Singleton
     private HobbyFacade() {}
 
-    /**
-     *
-     * @param _emf
-     * @return an instance of this facade class.
-     */
 
     public static HobbyFacade getHobbyFacade(EntityManagerFactory _emf) {
         if (instance == null) {
@@ -64,8 +59,7 @@ public class HobbyFacade {
         return new HobbyDTO(hobby);
     }
 
-    // Update Hobby
-    public HobbyDTO updateHobby(long id,HobbyDTO hdto) {
+    public HobbyDTO updateHobby(long id, HobbyDTO hdto) {
         EntityManager em = emf.createEntityManager();
         Hobby hobby = em.find(Hobby.class, id);
         System.out.println("updateHobby: " +hobby);
@@ -103,6 +97,4 @@ public class HobbyFacade {
         HobbyDTO h1 = new HobbyDTO("Fodbold", "Spille fodbold", "Sport");
         HobbyDTO h2 = new HobbyDTO("Basket", "Spille basket", "Sport");
     }
-
-
 }

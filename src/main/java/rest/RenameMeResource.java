@@ -60,14 +60,6 @@ public class RenameMeResource {
         return person;
     }
 
-    /*@POST
-    @Produces({MediaType.APPLICATION_JSON})
-    @Consumes({MediaType.APPLICATION_JSON})
-    public Response addPerson(PersonDTO){
-        RenameMeDTO rmdto = GSON.fromJson(PersonDTO), RenameMeDTO.class);
-        System.out.println(rmdto);
-        return Response.ok().entity(rmdto).build();
-    }*/
 
     @POST
     @Produces({MediaType.APPLICATION_JSON})
@@ -78,15 +70,15 @@ public class RenameMeResource {
         return Response.ok(GSON.toJson(new PersonDTO(p))).build();
     }
 
+
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{id}")
-    public Response updatePerson(@PathParam("id") Integer id, String content) {
+    @Path("updateperson/{id}")
+    public Response putPerson(@PathParam("id") Integer id, String content) {
         Person pd = GSON.fromJson(content, Person.class);
         pd.setId(id);
-        Person returned = personFacade.editPerson(id);
-        return Response.ok().entity(GSON.toJson(returned)).build();
+        Person person = personFacade.updatePerson(pd.getId(), pd.getFirstName(), pd.getLastName(), pd.getEmail(), pd.getPhoneNumber(), pd.getIdAddress());
+        return Response.ok().entity(GSON.toJson(person)).build();
     }
-
 }

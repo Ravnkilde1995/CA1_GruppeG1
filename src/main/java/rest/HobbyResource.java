@@ -32,16 +32,6 @@ public class HobbyResource {
         return "{\"count\":"+count+"}"; //Done manually so no need for a DTO
     }
 
-    /*
-    @GET
-    @Path("hobbies")
-    @Produces({MediaType.APPLICATION_JSON})
-    public Response getHobbies() {
-        List<Hobby> hobbies = FACADE.getAllHobbies();
-        return Response.status(200).entity(GSON.toJson(hobbies)).build();
-    }
-    */
-
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_JSON})
