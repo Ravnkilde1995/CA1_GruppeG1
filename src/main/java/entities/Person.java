@@ -2,6 +2,13 @@ package entities;
 
 import javax.persistence.*;
 
+/*
+delete data inserted by test method in PersonFacadeTest, input on line 13.
+
+name = "Person.deleteAllRows", query = "DELETE from Person
+*/
+
+
 @Entity
 @Table(name = "Person")
 public class Person {

@@ -39,7 +39,7 @@ public class PersonFacade {
         return persons;
     }
 
-    public Person getPerson(int id) {
+    public static Person getPerson(int id) {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p where p.id = :id", Person.class);
         query.setParameter("id", id);
@@ -84,6 +84,16 @@ public class PersonFacade {
 
         return person;
     }
+
+    /*public long getPersonCount(){
+        EntityManager em = getEntityManager();
+        try{
+            long personCount = (long)em.createQuery("SELECT COUNT(r) FROM PersonTest r").getSingleResult();
+            return personCount;
+        }finally{
+            em.close();
+        }
+    }*/
 
 
 }
