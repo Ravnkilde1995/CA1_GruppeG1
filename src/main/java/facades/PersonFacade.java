@@ -59,8 +59,6 @@ public class PersonFacade {
         return person;
     }
 
-
-    // Update person
     public Person updatePerson(Integer id, String firstName, String lastName, String email , int phoneNumber,  int idAddress) {
         EntityManager em = emf.createEntityManager();
         Person person = em.find(Person.class, id);
@@ -78,5 +76,4 @@ public class PersonFacade {
 
         return person;
     }
-
 }

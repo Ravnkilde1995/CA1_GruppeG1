@@ -22,7 +22,7 @@ public class CityInfoFacade {
         return emf.createEntityManager();
     }
 
-    public long getCityInfoCount(){
+    public long getCityInfoCount() {
         EntityManager em = getEntityManager();
         try {
             long cityInfoCount = (long) em.createQuery("SELECT COUNT(r) FROM CityInfo r ").getSingleResult();

@@ -11,7 +11,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 
 //Todo Remove or change relevant parts before ACTUAL use
@@ -37,8 +36,7 @@ public class RenameMeResource {
     public String getRenameMeCount() {
 
         long count = FACADE.getRenameMeCount();
-        //System.out.println("--------------->"+count);
-        return "{\"count\":"+count+"}";  //Done manually so no need for a DTO
+        return "{\"count\":"+count+"}";
 
     }
 
